@@ -1,12 +1,12 @@
 package sg.nus.iss.server.controller;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,15 +52,14 @@ public class BookController {
             .build().toString());
         }
 
-        System.out.println("httpbooks: " +books);
-
+       
         JsonArrayBuilder arr = Json.createArrayBuilder();
         for (Book b: books){
             arr.add(b.toJson());
         }
         String json = arr.build().toString();
 
-        System.out.println("httpjson: "+ json);
+       
         return ResponseEntity.ok().body(json);
     }
     
@@ -90,12 +89,10 @@ public class BookController {
         }
         
 
-        System.out.println("httpbook: " +book);
-
-
+       
         String json = book.toJson().toString();
 
-        System.out.println("httpjson: "+ json);
+      
         return ResponseEntity.ok().body(json);
     }
     
@@ -114,7 +111,7 @@ public class BookController {
             e.printStackTrace();
         }
 
-       System.out.println("httpreviews: "+ reviews);
+       
            if (reviews.size() == 0){
             return ResponseEntity.status(404).body(Json.createObjectBuilder()
             .add("error", "Review not found")
@@ -128,7 +125,7 @@ public class BookController {
        String json = arr.build().toString();
 
 
-        System.out.println("httpjson: "+ json);
+        
         return ResponseEntity.ok().body(json);
     }
     
