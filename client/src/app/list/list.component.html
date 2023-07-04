@@ -1,0 +1,24 @@
+<div>
+    <h1>Letter  {{character}}</h1>
+    <table *ngIf="books$ | async as bk; else noBook">
+        <tr *ngFor="let b of bk; let i = index">
+           <a [routerLink]="['/detail', b.title]"><td>{{b.title}}</td></a> 
+        </tr>
+        <tr>
+            <td>
+                <button type="button" (click)="prev()"> Previous</button>
+            </td>
+            <td>
+                <button type="button" (click)="next()"> Next</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button [routerLink]="['/']">Back</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<ng-template #noBook>
+    no books
+</ng-template>

@@ -1,0 +1,30 @@
+<div>
+    <h1>{{title}}</h1>
+    <table *ngIf="review ; else noReview">
+        <tr>
+            <td>
+            by  {{review.book_author}}
+            </td>
+            <td></td>
+        <tr>
+        </tr>
+        <td>Reviewer: {{review.byline}}</td>
+            <td></td>
+        <tr>
+            <td>Date: {{review.publication_dt}}</td>
+            <td></td>
+        </tr>
+        <tr>
+<td>{{review.summary}}</td>
+        </tr>
+        <tr>
+<td>{{copyright}}</td>
+<td>
+    <a [href]="review.url" >Full Review</a>
+</td>
+        </tr>
+    </table>
+</div>
+<ng-template #noReview>
+    no review
+</ng-template>

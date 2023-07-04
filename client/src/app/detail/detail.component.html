@@ -1,0 +1,26 @@
+<div>
+    <button [routerLink]="['/list']">Back</button>
+    <table *ngIf="book$ | async as b; else noBook">
+        <tr>
+<td> 
+    <div >
+        <img [src]="b.image_url" width="200" height="200">
+        <p>Pages: <span>{{b.pages}}</span></p>
+        <p>Rating: <span>{{b.rating | number: '1.2-2'}} ( {{b.rating_count}})</span></p>
+        <p>Genres: <span>{{genres}}</span></p>
+    </div>
+</td>
+<td>
+<div>
+<h2></h2>
+<p>by <span>{{authors}}</span></p>
+<p>{{b.description}}</p>
+<a [routerLink]="['/review', b.title]">Find Review</a>
+</div>
+</td>
+        </tr>
+    </table>
+</div>
+<ng-template #noBook>
+    no book
+</ng-template>
