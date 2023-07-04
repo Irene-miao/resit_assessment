@@ -122,19 +122,24 @@ public class Review implements Serializable {
           
             JsonArray arr = o.getJsonArray("results");
               System.out.println("arr: "+ arr.toString());
-           review.setBook_author(o.getString("book_author"));
-           review.setBook_title(o.getString("book_title"));
-           review.setByline(o.getString("byline"));
-            review.setIsbn13(o.getString("isbn13"));
-            review.setPublication_dt(o.getString("publication_dt"));
-            review.setSummary(o.getString("summary"));
-            review.setUri(o.getString("uri"));
-            review.setUrl(o.getString("url"));
-            review.setUuid(o.getString("uuid"));
+         for (JsonValue a : arr){
+           review.setUrl(a.toString());
+           review.setPublication_dt(a.toString());
+            review.setByline(a.toString());
+            review.setBook_title(a.toString());
+           review.setBook_author(a.toString());
+           review.setSummary(a.toString());
+           review.setUuid(a.toString());
+           review.setUri(a.toString());
+           review.setIsbn13(a.toString());
+          }
+              
         }
 
-        System.out.println("review: "+ review);
+       System.out.println("review: "+ review);
         return review;
     }
     
 }
+
+

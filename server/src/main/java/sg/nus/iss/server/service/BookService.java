@@ -21,7 +21,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import sg.nus.iss.server.model.Book;
 import sg.nus.iss.server.model.Review;
 import sg.nus.iss.server.repository.BookRepository;
-import sg.nus.iss.server.repository.ReviewRepository;
+
 
 @Service
 public class BookService {
@@ -69,7 +69,7 @@ public class BookService {
         List<Review> reviews = new ArrayList<>();
         
         reviews.add(Review.create(resp.getBody()));
-        
+        System.out.println("reviews: "+ reviews);
         return reviews;
     }
 }
