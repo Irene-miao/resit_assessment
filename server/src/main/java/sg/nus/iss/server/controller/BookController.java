@@ -1,5 +1,6 @@
 package sg.nus.iss.server.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.json.Json;
 import jakarta.json.JsonArrayBuilder;
 import sg.nus.iss.server.model.Book;
+import sg.nus.iss.server.model.Review;
 import sg.nus.iss.server.service.BookService;
 
 @RestController
@@ -92,6 +94,39 @@ public class BookController {
 
 
         String json = book.toJson().toString();
+
+        System.out.println("httpjson: "+ json);
+        return ResponseEntity.ok().body(json);
+    }
+    
+
+     @GetMapping(path="/review")
+    @CrossOrigin(origins="*")
+    public ResponseEntity<String> getBookReview(@RequestParam(required=true) String title){
+
+        List<Review> reviews = null;
+    
+
+        try {
+            reviews = bookSvc.getBookReview(title);
+         
+        }catch (Exception e){ 
+            e.printStackTrace();
+        }
+
+       System.out.println("httpreviews: "+ reviews);
+           if (reviews.size() == 0){
+            return ResponseEntity.status(404).body(Json.createObjectBuilder()
+            .add("error", "Review not found")
+            .build().toString());
+           }
+       
+       JsonArrayBuilder arr = Json.createArrayBuilder();
+       for (Review r : reviews){
+        arr.add(r.toJson());
+       }
+       String json = arr.build().toString();
+
 
         System.out.println("httpjson: "+ json);
         return ResponseEntity.ok().body(json);
